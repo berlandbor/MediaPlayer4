@@ -7,22 +7,29 @@
   <link rel="stylesheet" href="player.css" />
 </head>
 <body>
-  <div class="container">
-    <img id="logo" src="" alt="logo" hidden />
-    <h1 id="title">Загрузка...</h1>
-    <button class="back-button" onclick="location.href='index.html'">🔙 Назад к списку</button><hr>
-    <button id="fullscreenBtn">Во весь экран</button><hr>
+   <div class="container">
+
+        <img id="logo" src="" alt="logo" hidden />
+
+
+
     <div id="player" class="player-container"></div>
+    <h1 id="title">Загрузка...</h1>
+
     <div id="spinner" class="spinner" hidden></div>
     <div id="bufferingText" class="buffering-text" hidden>
       <span id="bufferingMessage">Буферизация...</span>
       <span id="qualityBadge"></span>
     </div>
     <div id="error" class="error-msg"></div>
+
     <div class="nav">
       <button onclick="goTo(-1)">◀ Предыдущий</button>
       <button onclick="goTo(1)">Следующий ▶</button>
-    </div>
+    </div><hr>
+    <button class="back-button" onclick="location.href='index.html'">🔙 Назад к списку</button><hr>
+    <button id="fullscreenBtn">Во весь экран</button><hr>
+            <h1>Berlandbor SL-Player</h1>
     <audio id="alertSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2634eebd7d.mp3?filename=alert-7393.mp3" preload="auto"></audio>
   </div>
 
