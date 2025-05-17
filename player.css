@@ -49,6 +49,23 @@ video, audio {
   background-color: #666;
 }
 
+
+#fullscreenBtn{
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 15px;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#fullscreenBtn {
+  background-color: #666;
+}
+
 .spinner {
   margin: 25px auto 10px;
   border: 6px solid #333;
