@@ -5,6 +5,9 @@ const logo = params.get("logo");
 const index = parseInt(params.get("index"));
 const playlist = JSON.parse(localStorage.getItem("media_autoload") || "[]");
 
+// Устанавливаем заголовок страницы
+document.title = name ? `Смотри: ${name}` : "Проигрыватель";
+
 const titleEl = document.getElementById("title");
 const logoEl = document.getElementById("logo");
 const spinner = document.getElementById("spinner");
@@ -238,10 +241,12 @@ document.getElementById("shareBtn").addEventListener("click", () => {
   const base = location.origin + location.pathname;
   const shareURL = `${base}?name=${encodeURIComponent(name)}&url=${encodeURIComponent(url)}&logo=${encodeURIComponent(logo || "")}`;
 
+  const titleText = name ? `Смотри стрим: ${name}` : "Смотри стрим";
+
   if (navigator.share) {
     navigator.share({
-      title: name || "Стрим",
-      text: "Смотри стрим:",
+      title: titleText,
+      text: titleText,
       url: shareURL
     }).catch(() => alert("Не удалось открыть меню общего доступа."));
   } else {
@@ -265,23 +270,5 @@ document.getElementById("diagBtn").addEventListener("click", () => {
   document.getElementById("diagModal").classList.remove("hidden");
 });
 
-// Запуск мониторинга
 setInterval(updateStreamStats, 1000);
 setInterval(checkServerPing, 5000);
-
-// Проверка CORS/HTTPS и попытка восстановить проигрывание
-player.addEventListener("error", () => {
-  hideSpinner();
-  errorEl.textContent = "Не удалось воспроизвести поток. Проверьте ссылку и доступность потока.";
-  errorEl.style.color = "#ff4444";
-});
-
-// Автоматический переход к последнему каналу, если URL пуст
-if (!url) {
-  const saved = JSON.parse(localStorage.getItem("media_autoload") || "[]");
-  const lastIndex = parseInt(localStorage.getItem("last_index") || 0);
-  if (saved.length && !isNaN(lastIndex)) {
-    const s = saved[lastIndex];
-    location.href = `player.html?name=${encodeURIComponent(s.name)}&url=${encodeURIComponent(s.url)}&logo=${encodeURIComponent(s.logo || '')}&index=${lastIndex}`;
-  }
-}
